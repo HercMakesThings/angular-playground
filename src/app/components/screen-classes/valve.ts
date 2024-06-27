@@ -1,9 +1,10 @@
-export class HpHmiValve {
-    x: number;
-    y: number;
-    data: any;
+import { ScreenPoint } from "../canvas-container/canvas-container.component";
+import p5 from 'p5';
+import { HpHmiBasicScreenObj } from "./BasicScreenObj";
 
-    render(p: any) {
+export class HpHmiValve extends HpHmiBasicScreenObj {
+
+    render(p: p5) {
         p.push();
         p.stroke(0);
         // strokeWeight(5);
@@ -27,21 +28,7 @@ export class HpHmiValve {
         p.pop();
     }
 
-    move(p: any, mouseX: number, mouseY: number) {
-        if (p.dist(mouseX, mouseY, this.x, this.y) < 20) {
-            this.x = mouseX;
-            this.y = mouseY;
-        }
-    }
-
-    constructor(point: Record<string, any>) {
-        this.x = point["x"];
-        this.y = point["y"];
-        this.data = point["data"];
-        // this.x = point.x;
-        // this.y = point.y;
-        // this.data = point.data;
-
-        // this.isChanging = point.isChanging;
+    constructor(point: ScreenPoint) {
+        super(point);
     }
 }
