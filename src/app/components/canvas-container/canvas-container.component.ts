@@ -166,6 +166,8 @@ export class CanvasContainerComponent implements OnInit {
         // CanvasContainerComponent.valve1.reposition(CanvasContainerComponent.p5ive);
 
         // CanvasContainerComponent.analogBar1.reposition(CanvasContainerComponent.p7);
+
+      CanvasContainerComponent.pump1.showContextMenu(p);
     };
 
     p.mouseDragged = () => {
@@ -192,6 +194,10 @@ export class CanvasContainerComponent implements OnInit {
           CanvasContainerComponent.connector1.move(p.mouseX, p.mouseY, 'p2');
       }
     }
+
+    p.mouseClicked = () => {
+      CanvasContainerComponent.pump1.toggleContextMenu(p, p.mouseX, p.mouseY);
+    };
   }
 
   ngOnInit(): void {
