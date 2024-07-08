@@ -1,4 +1,4 @@
-import { ScreenPoint } from "../canvas-container/canvas-container.component";
+import { ScreenPoint } from '../../app.component';
 import { HpHmiBasicScreenObj } from "./BasicScreenObj";
 
 export class HpHmiTank extends HpHmiBasicScreenObj {

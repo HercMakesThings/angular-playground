@@ -1,7 +1,84 @@
 import { Injectable } from '@angular/core';
-import { ScreenPoint } from '../../components/canvas-container/canvas-container.component';
+import { ScreenPoint, Ht5Point } from '../../app.component';
 import { Observable, from, interval, of, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+const DUMMY_POINTS: Ht5Point[] = [
+  {
+    address: '2001C1',
+    point_name: 'Wet Well Level',
+    type: 'AI',
+    point_status: {
+      alarm_text: 'OFF',
+      value: 14
+    },
+    point_config: {
+      loweng: 0,
+      higheng: 24,
+      pnum: 1,
+      snum: 1,
+      dnum: 2,
+      mchar: "C"
+    }
+  },
+  {
+    address: '2001A1',
+    point_name: 'Pump 1 Status',
+    type: 'DI',
+    point_status: {
+      alarm_text: 'ON',
+      value: 1
+    },
+    point_config: {
+      loweng: "",
+      higheng: "",
+      pnum: 1,
+      snum: 1,
+      dnum: 2,
+      mchar: "A"
+    }
+  },
+  {
+    address: '2001A2',
+    point_name: 'Pump 2 Status',
+    type: 'DI',
+    point_status: {
+      alarm_text: 'ON',
+      value: 1
+    },
+    point_config: {
+      loweng: "",
+      higheng: "",
+      pnum: 2,
+      snum: 1,
+      dnum: 2,
+      mchar: "A"
+    }
+  },
+  {
+    address: '2001A3',
+    point_name: 'Pump 3 Status',
+    type: 'DI',
+    point_status: {
+      alarm_text: 'ON',
+      value: 1
+    },
+    point_config: {
+      loweng: "",
+      higheng: "",
+      pnum: 3,
+      snum: 1,
+      dnum: 2,
+      mchar: "A"
+    }
+  }
+];
+
+// const DUMMY_SCREEN_CONFIG: ScreenPoint[] = [
+//   {
+//     x: 
+//   }
+// ];
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +87,7 @@ export class FauxPointService {
 
   // ticker!: Observable<any>;
   ticker: any;
+  points$: Observable<Ht5Point[]> = of(DUMMY_POINTS);
 
   init_point_1: ScreenPoint = {
     x: 360,

@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import { ScreenPoint } from '../canvas-container/canvas-container.component';
+import { ScreenPoint } from '../../app.component';
 import { HpHmiBasicScreenObj } from './BasicScreenObj';
 
 export class HpHmiAnalogBar extends HpHmiBasicScreenObj {
@@ -8,6 +8,7 @@ export class HpHmiAnalogBar extends HpHmiBasicScreenObj {
     level: number;
 
     render(p: p5) {
+        // let level = p.map(this.level, 0, 60, 0, this.height);
         let level = p.map(this.level, 0, 60, 0, this.height);
 
         p.push();
@@ -40,23 +41,28 @@ export class HpHmiAnalogBar extends HpHmiBasicScreenObj {
         p.push();
         p.translate(-this.width, this.height/2)
         p.fill(40);
-        p.triangle(this.x, this.y-level, this.x-30, this.y-level-15, this.x-30, this.y-level+15);
+        p.triangle(
+            this.x, this.y-level, 
+            this.x-this.width, this.y-level-(this.width/2), 
+            this.x-this.width, this.y-level+(this.width/2));
         p.pop();
     }
 
     update(point: ScreenPoint) {
-        if(point.data.point_status.value) {
-            this.level = point.data.point_status.value;
+        if(point.data?.point_status.value) {
+            this.level = point.data?.point_status.value;
         }
         // this.data = point.data;
     }
 
-    constructor(point: ScreenPoint) {
+    constructor(point: ScreenPoint, width: number, height: number) {
         super(point);
-        this.width = 30;
-        this.height = 200;
-        if (point.data.point_status.value !== undefined) {
-            this.level = point.data.point_status.value;
+        // this.width = 30;
+        // this.height = 200;
+        this.width = width;
+        this.height = height;
+        if (point.data?.point_status.value !== undefined) {
+            this.level = point.data?.point_status.value;
         } else {
             this.level = 0;
         }

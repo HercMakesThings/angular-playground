@@ -1,4 +1,4 @@
-import { ScreenPoint } from "../canvas-container/canvas-container.component";
+import { ScreenPoint } from '../../app.component';
 import p5 from 'p5';
 import { HpHmiBasicScreenObj } from "./BasicScreenObj";
 

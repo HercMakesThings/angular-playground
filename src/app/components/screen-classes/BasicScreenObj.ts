@@ -1,11 +1,11 @@
 import p5 from 'p5';
-import { ScreenPoint, Ht5Point } from '../canvas-container/canvas-container.component';
+import { ScreenPoint, Ht5Point } from '../../app.component';
 
 export class HpHmiBasicScreenObj {
     x: number;
     y: number;
     // data: any;
-    data: Ht5Point;
+    data: Ht5Point | null;
     isSelected: boolean = false;
 
     reposition(point: ScreenPoint) {
@@ -20,6 +20,13 @@ export class HpHmiBasicScreenObj {
             this.y = mouseY;
         }
     }
+
+    // update(point: ScreenPoint) {
+    //     if(point.data?.point_status.value) {
+    //         this.level = point.data?.point_status.value;
+    //     }
+    //     // this.data = point.data;
+    // }
 
     toggleContextMenu(p: p5, mouseX: number, mouseY: number) {
         if(p.dist(this.x, this.y, mouseX, mouseY) < 20) {
@@ -36,10 +43,14 @@ export class HpHmiBasicScreenObj {
             p.rect(this.x, this.y, 80, 90, 6);
             p.fill(0);
             p.textAlign(p.LEFT, p.TOP);
-            p.text(`alarm: ${this.data.point_status.alarm_text}`, this.x+4, this.y+4);
+            p.text(`alarm: ${this.data?.point_status.alarm_text}`, this.x+4, this.y+4);
             p.pop();
         }
     }
+
+    // updatePoint(point: Ht5Point) {
+    //     this.data = point;
+    // }
 
     constructor(point: ScreenPoint) {
         this.x = point.x;
